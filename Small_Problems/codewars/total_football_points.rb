@@ -1,0 +1,69 @@
+# total_football_points.rb
+
+=begin
+
+Our team's match results are recorded in a collection of strings.
+Each match is represented by a string in the format "x:y", where x 
+is our team's score and y is our opponents score.
+
+["3:1", "2:2", "0:1", ...]
+
+Points are awarded for each match as follows:
+
+if x > y: 3 points (win)
+if x < y: 0 points (loss)
+if x = y: 1 point (tie)
+
+We need to write a function that takes this collection and 
+returns the number of points our team (x) got in the championship 
+by the rules given above.
+
+
+PROBLEM:
+input: array
+output: integer that is the score
+if x > y points += 3
+if x < y points += 0
+if x == y points += 1
+
+
+EXAMPLES:
+p points(['1:0','2:0','3:0','4:0','2:1','3:1','4:1','3:2','4:2','4:3']) == 30
+p points(["1:1","2:2","3:3","4:4","2:2","3:3","4:4","3:3","4:4","4:4"]) == 10
+p points(["0:1","0:2","0:3","0:4","1:2","1:3","1:4","2:3","2:4","3:4"]) == 0
+p points(["1:0","2:0","3:0","4:0","2:1","1:3","1:4","2:3","2:4","3:4"]) == 15
+p points(["1:0","2:0","3:0","4:4","2:2","3:3","1:4","2:3","2:4","3:4"]) == 12
+
+
+DATA STRUCTURE:
+turn each string into array OR just index the string to get x & y
+
+ALGORITHM:
+- create points variable initialized at 0
+- iterate through the array of scores
+  - get x and turn to integer
+  - get y and turn to integer
+  - compare x and y and assign points according to scheme above
+- return points
+
+=end
+
+def points(scores_array)
+  points = 0
+  scores_array.each do |score|
+    x = score[0].to_i
+    y = score[-1].to_i
+    if x > y
+      points += 3
+    elsif x == y
+      points += 1
+    end
+  end
+  points
+end
+
+p points(['1:0','2:0','3:0','4:0','2:1','3:1','4:1','3:2','4:2','4:3']) == 30
+p points(["1:1","2:2","3:3","4:4","2:2","3:3","4:4","3:3","4:4","4:4"]) == 10
+p points(["0:1","0:2","0:3","0:4","1:2","1:3","1:4","2:3","2:4","3:4"]) == 0
+p points(["1:0","2:0","3:0","4:0","2:1","1:3","1:4","2:3","2:4","3:4"]) == 15
+p points(["1:0","2:0","3:0","4:4","2:2","3:3","1:4","2:3","2:4","3:4"]) == 12

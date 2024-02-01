@@ -1,0 +1,1 @@
+p "---what's my +*& line?".gsub()
